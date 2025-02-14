@@ -39,15 +39,25 @@ body {
   text-align: left;
 }
 
+/* Botón para contraer/expandir */
 #toggle-toc {
   background-color: #007BFF;
-  color: white;
+  color: #fff;
   border: none;
   padding: 5px 10px;
   font-size: 1em;
   cursor: pointer;
   margin-bottom: 15px;
   border-radius: 3px;
+}
+
+/* Contenedor del contenido del índice */
+.toc .toc-content {
+  transition: all 0.3s ease;
+}
+
+.toc.collapsed .toc-content {
+  display: none;
 }
 
 .toc ul {
