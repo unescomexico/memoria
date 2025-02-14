@@ -37,14 +37,10 @@ document.addEventListener('DOMContentLoaded', function () {
     observer.observe(section);
   });
 
-  // Funcionalidad para contraer/expandir el índice
+  // Funcionalidad para contraer/expandir el índice en móviles
   const toggleBtn = document.getElementById('toggle-toc');
   toggleBtn.addEventListener('click', function () {
     const tocElement = document.querySelector('.toc');
     tocElement.classList.toggle('expanded');
   });
 });
-
-
-
-

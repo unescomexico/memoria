@@ -33,59 +33,15 @@ body {
   overflow-y: auto;
 }
 
-/* Ocultar el título "Índice" y usar solo el botón en móvil/desktop */
+/* Ocultamos el título "Índice" */
 .toc h2 {
   display: none;
 }
 
-/* Botón para contraer/expandir (mostrar solo ☰) */
-#toggle-toc {
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  font-size: 1.5em;
-  cursor: pointer;
-  border-radius: 3px;
-  margin-bottom: 15px;
-}
-
-/* En dispositivos móviles, hacer el botón fijo */
-@media (max-width: 768px) {
-  #toggle-toc {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-  }
-
-  /* El panel de índice se mostrará como overlay */
-  .toc {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100vh;
-    background-color: #fff;
-    padding: 20px;
-    border-right: 1px solid #ddd;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    z-index: 999;
-  }
-
-  /* Cuando esté expandido, se despliega */
-  .toc.expanded {
-    transform: translateX(0);
-  }
-}
-
-/* Contenedor del contenido del índice */
 .toc .toc-content {
   transition: all 0.3s ease;
 }
 
-/* Estilos para las listas del índice */
 .toc ul {
   list-style: none;
   padding-left: 0;
@@ -107,6 +63,11 @@ body {
 .toc a.active {
   font-weight: bold;
   color: #004c6b;
+}
+
+/* Ocultar el botón en escritorio */
+#toggle-toc {
+  display: none;
 }
 
 /* Estilos para el contenido principal */
@@ -236,14 +197,50 @@ tfoot {
   font-weight: bold;
 }
 
-/* Ajustes responsivos */
+/* Estilos para dispositivos móviles */
 @media (max-width: 768px) {
+
+  /* Mostrar el botón en móviles */
+  #toggle-toc {
+    display: block;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 1.5em;
+    border-radius: 3px;
+  }
+
+  /* Convertir el índice en panel overlay en móviles */
+  .toc {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #fff;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+  }
+
+  /* Cuando el índice tenga la clase 'expanded', se muestra */
+  .toc.expanded {
+    transform: translateX(0);
+  }
+
   .wrapper {
     flex-direction: column;
   }
 
-  /* Para que el contenido no se oculte detrás del panel, agregamos un margen cuando el índice esté expandido */
+  .toc,
   .content {
-    margin-left: 0;
+    width: 100%;
   }
 }
