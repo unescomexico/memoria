@@ -39,6 +39,17 @@ body {
   text-align: left;
 }
 
+#toggle-toc {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-bottom: 15px;
+  border-radius: 3px;
+}
+
 .toc ul {
   list-style: none;
   padding-left: 0;
@@ -71,11 +82,14 @@ body {
 .container {
   background-color: #fff;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilos para los títulos */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   text-align: center;
   color: #444;
   margin-bottom: 20px;
@@ -170,7 +184,8 @@ table {
   width: 90%;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;
@@ -190,7 +205,9 @@ tfoot {
   .wrapper {
     flex-direction: column;
   }
-  .toc, .content {
+
+  .toc,
+  .content {
     width: 100%;
   }
 }
