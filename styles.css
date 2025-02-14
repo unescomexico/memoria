@@ -33,22 +33,51 @@ body {
   overflow-y: auto;
 }
 
+/* Ocultar el título "Índice" y usar solo el botón en móvil/desktop */
 .toc h2 {
-  margin-bottom: 15px;
-  font-size: 1.2em;
-  text-align: left;
+  display: none;
 }
 
-/* Botón para contraer/expandir */
+/* Botón para contraer/expandir (mostrar solo ☰) */
 #toggle-toc {
   background-color: #007BFF;
   color: #fff;
   border: none;
   padding: 5px 10px;
-  font-size: 1em;
+  font-size: 1.5em;
   cursor: pointer;
-  margin-bottom: 15px;
   border-radius: 3px;
+  margin-bottom: 15px;
+}
+
+/* En dispositivos móviles, hacer el botón fijo */
+@media (max-width: 768px) {
+  #toggle-toc {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+  }
+
+  /* El panel de índice se mostrará como overlay */
+  .toc {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: #fff;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+  }
+
+  /* Cuando esté expandido, se despliega */
+  .toc.expanded {
+    transform: translateX(0);
+  }
 }
 
 /* Contenedor del contenido del índice */
@@ -56,10 +85,7 @@ body {
   transition: all 0.3s ease;
 }
 
-.toc.collapsed .toc-content {
-  display: none;
-}
-
+/* Estilos para las listas del índice */
 .toc ul {
   list-style: none;
   padding-left: 0;
@@ -216,8 +242,8 @@ tfoot {
     flex-direction: column;
   }
 
-  .toc,
+  /* Para que el contenido no se oculte detrás del panel, agregamos un margen cuando el índice esté expandido */
   .content {
-    width: 100%;
+    margin-left: 0;
   }
 }

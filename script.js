@@ -40,14 +40,11 @@ document.addEventListener('DOMContentLoaded', function () {
   // Funcionalidad para contraer/expandir el índice
   const toggleBtn = document.getElementById('toggle-toc');
   toggleBtn.addEventListener('click', function () {
-    const toc = document.querySelector('.toc');
-    toc.classList.toggle('collapsed');
-    if (toc.classList.contains('collapsed')) {
-      this.textContent = 'Expandir Índice';
-    } else {
-      this.textContent = 'Contraer Índice';
-    }
+    const tocElement = document.querySelector('.toc');
+    tocElement.classList.toggle('expanded');
   });
 });
+
+
 
 
