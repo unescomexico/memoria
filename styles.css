@@ -1,0 +1,196 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* Wrapper para la disposición de dos columnas */
+.wrapper {
+  display: flex;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Estilos para el índice (tabla de contenidos) */
+.toc {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  position: sticky;
+  top: 20px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+}
+
+.toc h2 {
+  margin-bottom: 15px;
+  font-size: 1.2em;
+  text-align: left;
+}
+
+.toc ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.toc li {
+  margin-bottom: 10px;
+}
+
+.toc a {
+  text-decoration: none;
+  color: #007BFF;
+}
+
+.toc a:hover {
+  text-decoration: underline;
+}
+
+.toc a.active {
+  font-weight: bold;
+  color: #004c6b;
+}
+
+/* Estilos para el contenido principal */
+.content {
+  flex: 3;
+}
+
+/* Contenedor del artículo */
+.container {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Estilos para los títulos */
+h1, h2, h3, h4 {
+  text-align: center;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 1.4em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+/* Estilos para los párrafos */
+p {
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+/* Estilos para las listas generales */
+ul {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para la imagen */
+img {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin: 0 auto 20px;
+}
+
+/* Estilos para la línea horizontal */
+hr {
+  border: 1px solid pink;
+  margin: 20px 0;
+}
+
+/* Estilos para las citas */
+blockquote {
+  border-left: 4px solid #ccc;
+  padding-left: 15px;
+  margin: 20px 0;
+  font-style: italic;
+  color: #555;
+}
+
+/* Estilos para el contenedor de la lista */
+.list-container {
+  background-color: #f0f0f0;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 20px 30px;
+  list-style-position: inside;
+}
+
+/* Estilos para la lista principal dentro del contenedor */
+.list-container ol {
+  margin-left: 20px;
+  list-style-position: inside;
+}
+
+/* Estilos para los subpuntos (listas anidadas) */
+.list-container ol ol {
+  margin-left: 40px;
+  list-style-type: lower-alpha;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Ajuste de espaciado entre elementos de la lista */
+.list-container li {
+  margin-bottom: 10px;
+}
+
+/* Estilos para la tabla */
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 90%;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+thead {
+  background-color: #f2f2f2;
+}
+
+tfoot {
+  background-color: #f9f9f9;
+  font-weight: bold;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+  }
+  .toc, .content {
+    width: 100%;
+  }
+}
