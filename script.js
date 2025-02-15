@@ -43,4 +43,19 @@ document.addEventListener('DOMContentLoaded', function () {
     const tocElement = document.querySelector('.toc');
     tocElement.classList.toggle('expanded');
   });
+
+  // Funcionalidad para secciones colapsables:
+  // Se agregará un listener a los encabezados dentro de secciones con clase 'collapsible'
+  const collapsibleHeaders = document.querySelectorAll('.collapsible h1, .collapsible h2, .collapsible h3, .collapsible h4');
+  collapsibleHeaders.forEach(header => {
+    header.addEventListener('click', function () {
+      const content = this.nextElementSibling;
+      if (content.classList.contains('collapsed')) {
+        content.classList.remove('collapsed');
+      } else {
+        content.classList.add('collapsed');
+      }
+    });
+  });
 });
+
