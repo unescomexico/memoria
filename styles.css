@@ -23,35 +23,15 @@ body {
 
 /* Estilos para el índice (tabla de contenidos) */
 .toc {
-  flex: 1;
   background-color: #fff;
   padding: 20px;
   border: 1px solid #ddd;
-  position: sticky;
-  top: 20px;
   max-height: calc(100vh - 40px);
   overflow-y: auto;
-  /* Para escritorio, dejamos espacio para el botón */
-  position: sticky;
+  /* En escritorio se posiciona fijo, se ajusta en la media query */
 }
 
-/* Botón para contraer/expandir: siempre visible */
-#toggle-toc {
-  display: block;
-  position: absolute;
-  top: 20px;
-  right: -40px;
-  z-index: 10;
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  font-size: 1.5em;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-/* Ocultamos el título "Índice" si lo hubiese */
+/* Ocultamos el título "Índice" */
 .toc h2 {
   display: none;
 }
@@ -83,6 +63,22 @@ body {
 .toc a.active {
   font-weight: bold;
   color: #004c6b;
+}
+
+/* Botón para contraer/expandir (siempre visible) */
+#toggle-toc {
+  display: block;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 1.5em;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 /* Estilos para el contenido principal */
@@ -119,10 +115,12 @@ h2 {
 
 h3 {
   font-size: 1.4em;
+  cursor: pointer;
 }
 
 h4 {
   font-size: 1.2em;
+  cursor: pointer;
 }
 
 /* Estilos para los párrafos */
@@ -141,7 +139,7 @@ ul {
 img {
   display: block;
   width: 100%;
-  max-width: 400px;
+  max-width: 900px;
   height: auto;
   margin: 0 auto 20px;
 }
@@ -159,6 +157,28 @@ blockquote {
   margin: 20px 0;
   font-style: italic;
   color: #555;
+}
+
+/* Estilos para secciones colapsables */
+.collapsible .section-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+/* En escritorio, se muestran expandidas */
+.collapsible .section-content {
+  max-height: none;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* En móviles, las secciones inician colapsadas */
+@media (max-width: 768px) {
+  .collapsible .section-content {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 }
 
 /* Estilos para el contenedor de la lista */
@@ -212,41 +232,31 @@ tfoot {
   font-weight: bold;
 }
 
-/* Estilos para dispositivos móviles */
-@media (max-width: 768px) {
-
-  /* Posicionar el botón fijo en móviles */
-  #toggle-toc {
+/* Ajustes para dispositivos de escritorio */
+@media (min-width: 769px) {
+  .toc {
     position: fixed;
     top: 20px;
     left: 20px;
-    right: auto;
-    z-index: 1000;
-    padding: 10px;
-    font-size: 1.5em;
-  }
-
-  /* Convertir el índice en panel overlay fijo */
-  .toc {
-    position: fixed;
-    top: 0;
-    left: 0;
     width: 250px;
-    height: 100vh;
-    background-color: #fff;
-    padding: 60px 20px 20px;
-    /* Se deja padding superior para que no quede tapado por el botón */
-    border-right: 1px solid #ddd;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    z-index: 999;
+    height: calc(100vh - 40px);
+    overflow-y: auto;
   }
 
-  /* Cuando el índice tenga la clase 'expanded', se muestra */
-  .toc.expanded {
-    transform: translateX(0);
+  /* Ocultar el botón en escritorio */
+  #toggle-toc {
+    display: none;
   }
 
+  /* Desplazar el contenido principal para que no se solape con el índice */
+  .content {
+    margin-left: 290px;
+    /* 250px + 40px de margen */
+  }
+}
+
+/* Ajustes responsivos para móviles (ya incluidos anteriormente) */
+@media (max-width: 768px) {
   .wrapper {
     flex-direction: column;
   }
@@ -256,7 +266,6 @@ tfoot {
     width: 100%;
   }
 
-  /* Reducir tamaños de fuente para títulos y enlaces en móviles */
   h1 {
     font-size: 1.8em;
   }

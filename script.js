@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   const tocLinks = document.querySelectorAll('.toc a');
 
-  // Navegación suave al hacer click en el índice
+  // Navegación suave en el índice
   tocLinks.forEach(link => {
     link.addEventListener('click', function (e) {
       e.preventDefault();
@@ -37,14 +37,27 @@ document.addEventListener('DOMContentLoaded', function () {
     observer.observe(section);
   });
 
-  // Funcionalidad para contraer/expandir el índice (toggle botón)
+  // Funcionalidad para contraer/expandir el índice en móviles
   const toggleBtn = document.getElementById('toggle-toc');
   toggleBtn.addEventListener('click', function () {
     const tocElement = document.querySelector('.toc');
     tocElement.classList.toggle('expanded');
   });
+
+  // Funcionalidad para secciones colapsables
+  const collapsibleHeaders = document.querySelectorAll('.collapsible h1, .collapsible h2, .collapsible h3, .collapsible h4');
+  collapsibleHeaders.forEach(header => {
+    header.addEventListener('click', function () {
+      const content = this.nextElementSibling;
+      if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+        content.style.maxHeight = '0px';
+        content.style.paddingTop = '0';
+        content.style.paddingBottom = '0';
+      } else {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        content.style.paddingTop = '20px';
+        content.style.paddingBottom = '20px';
+      }
+    });
+  });
 });
-
-
-
-
