@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
     tocElement.classList.toggle('expanded');
   });
 
-  // Funcionalidad para secciones colapsables (para todas las versiones)
+  // Funcionalidad para secciones colapsables (aplica en escritorio y móvil)
   const collapsibleHeaders = document.querySelectorAll('.collapsible h1, .collapsible h2, .collapsible h3, .collapsible h4');
   collapsibleHeaders.forEach(header => {
     header.addEventListener('click', function () {
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
         content.style.paddingTop = '0';
         content.style.paddingBottom = '0';
       } else {
-        // Expandir: se asigna el scrollHeight
+        // Expandir: asignar scrollHeight y padding
         content.style.maxHeight = content.scrollHeight + 'px';
         content.style.paddingTop = '20px';
         content.style.paddingBottom = '20px';
