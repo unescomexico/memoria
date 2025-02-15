@@ -158,7 +158,7 @@ blockquote {
   color: #555;
 }
 
-/* Estilos para secciones colapsables (todas inician contraídas) */
+/* Estilos para secciones colapsables (inician contraídas) */
 .collapsible .section-content {
   overflow: hidden;
   transition: max-height 0.3s ease, padding 0.3s ease;
@@ -166,8 +166,6 @@ blockquote {
   padding-top: 0;
   padding-bottom: 0;
 }
-
-/* Cuando se expande, JS ajusta inline los estilos */
 
 /* Estilos para el contenedor de la lista */
 .list-container {
@@ -272,5 +270,25 @@ tfoot {
 
   .toc a {
     font-size: 1em;
+  }
+
+  /* Estilo para ocultar el índice por defecto y mostrarlo al pulsar el botón */
+  .toc {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 250px;
+    height: calc(100vh - 40px);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    overflow-y: auto;
+    transform: translateX(-270px);
+    /* lo esconde fuera de pantalla */
+    transition: transform 0.3s ease;
+    z-index: 999;
+  }
+
+  .toc.expanded {
+    transform: translateX(0);
   }
 }
