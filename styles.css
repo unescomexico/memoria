@@ -28,7 +28,6 @@ body {
   border: 1px solid #ddd;
   max-height: calc(100vh - 40px);
   overflow-y: auto;
-  /* En escritorio se posiciona fijo, se ajusta en la media query */
 }
 
 /* Ocultamos el título "Índice" */
@@ -65,7 +64,7 @@ body {
   color: #004c6b;
 }
 
-/* Botón para contraer/expandir (siempre visible) */
+/* Botón para contraer/expandir el índice */
 #toggle-toc {
   display: block;
   position: fixed;
@@ -163,23 +162,12 @@ blockquote {
 .collapsible .section-content {
   overflow: hidden;
   transition: max-height 0.3s ease, padding 0.3s ease;
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
-/* En escritorio, se muestran expandidas */
-.collapsible .section-content {
-  max-height: none;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-/* En móviles, las secciones inician colapsadas */
-@media (max-width: 768px) {
-  .collapsible .section-content {
-    max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-}
+/* Cuando se expande, se asigna un valor dinámico (JS lo controlará) */
 
 /* Estilos para el contenedor de la lista */
 .list-container {
@@ -243,11 +231,6 @@ tfoot {
     overflow-y: auto;
   }
 
-  /* Ocultar el botón en escritorio */
-  #toggle-toc {
-    display: none;
-  }
-
   /* Desplazar el contenido principal para que no se solape con el índice */
   .content {
     margin-left: 290px;
@@ -255,7 +238,7 @@ tfoot {
   }
 }
 
-/* Ajustes responsivos para móviles (ya incluidos anteriormente) */
+/* Ajustes responsivos para móviles */
 @media (max-width: 768px) {
   .wrapper {
     flex-direction: column;

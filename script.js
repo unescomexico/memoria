@@ -44,16 +44,18 @@ document.addEventListener('DOMContentLoaded', function () {
     tocElement.classList.toggle('expanded');
   });
 
-  // Funcionalidad para secciones colapsables
+  // Funcionalidad para secciones colapsables (para todas las versiones)
   const collapsibleHeaders = document.querySelectorAll('.collapsible h1, .collapsible h2, .collapsible h3, .collapsible h4');
   collapsibleHeaders.forEach(header => {
     header.addEventListener('click', function () {
       const content = this.nextElementSibling;
       if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+        // Colapsar
         content.style.maxHeight = '0px';
         content.style.paddingTop = '0';
         content.style.paddingBottom = '0';
       } else {
+        // Expandir: se asigna el scrollHeight
         content.style.maxHeight = content.scrollHeight + 'px';
         content.style.paddingTop = '20px';
         content.style.paddingBottom = '20px';
