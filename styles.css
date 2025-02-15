@@ -31,9 +31,27 @@ body {
   top: 20px;
   max-height: calc(100vh - 40px);
   overflow-y: auto;
+  /* Para escritorio, dejamos espacio para el botón */
+  position: sticky;
 }
 
-/* Ocultamos el título "Índice" */
+/* Botón para contraer/expandir: siempre visible */
+#toggle-toc {
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: -40px;
+  z-index: 10;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  font-size: 1.5em;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+/* Ocultamos el título "Índice" si lo hubiese */
 .toc h2 {
   display: none;
 }
@@ -65,11 +83,6 @@ body {
 .toc a.active {
   font-weight: bold;
   color: #004c6b;
-}
-
-/* Botón para contraer/expandir (visible solo en móviles) */
-#toggle-toc {
-  display: none;
 }
 
 /* Estilos para el contenido principal */
@@ -199,46 +212,21 @@ tfoot {
   font-weight: bold;
 }
 
-/* Estilos para secciones colapsables */
-.collapsible h1,
-.collapsible h2,
-.collapsible h3,
-.collapsible h4 {
-  cursor: pointer;
-  /* Opcional: icono visual para indicar colapsabilidad */
-}
-
-.section-content {
-  transition: max-height 0.3s ease, padding 0.3s ease;
-  overflow: hidden;
-}
-
-/* Por defecto, se muestran (puedes ajustarlo a collapsed si quieres que inicien colapsadas) */
-.section-content.collapsed {
-  max-height: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
 /* Estilos para dispositivos móviles */
 @media (max-width: 768px) {
 
-  /* Mostrar el botón en móviles */
+  /* Posicionar el botón fijo en móviles */
   #toggle-toc {
-    display: block;
     position: fixed;
     top: 20px;
     left: 20px;
+    right: auto;
     z-index: 1000;
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
     padding: 10px;
     font-size: 1.5em;
-    border-radius: 3px;
   }
 
-  /* Convertir el índice en un panel overlay fijo */
+  /* Convertir el índice en panel overlay fijo */
   .toc {
     position: fixed;
     top: 0;
@@ -247,7 +235,7 @@ tfoot {
     height: 100vh;
     background-color: #fff;
     padding: 60px 20px 20px;
-    /* Padding superior para que el botón no tape */
+    /* Se deja padding superior para que no quede tapado por el botón */
     border-right: 1px solid #ddd;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
@@ -268,7 +256,7 @@ tfoot {
     width: 100%;
   }
 
-  /* Reducir tamaños de fuente para títulos y enlaces */
+  /* Reducir tamaños de fuente para títulos y enlaces en móviles */
   h1 {
     font-size: 1.8em;
   }
