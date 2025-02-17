@@ -122,6 +122,12 @@ h4 {
   cursor: pointer;
 }
 
+/* Sobreescribir la alineación para h3 y h4 */
+h3,
+h4 {
+  text-align: left;
+}
+
 /* Estilos para los párrafos */
 p {
   margin-bottom: 20px;
