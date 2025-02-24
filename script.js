@@ -8,6 +8,15 @@ document.addEventListener('DOMContentLoaded', function () {
       const target = document.querySelector(this.getAttribute('href'));
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
+        // Si la sección correspondiente está contraída, la expandimos
+        const targetContent = target.nextElementSibling;
+        if (targetContent && targetContent.classList.contains('section-content') &&
+          (!targetContent.style.maxHeight || targetContent.style.maxHeight === '0px')) {
+          targetContent.style.maxHeight = targetContent.scrollHeight + 'px';
+          targetContent.style.paddingTop = '20px';
+          targetContent.style.paddingBottom = '20px';
+          updateParentHeights(targetContent);
+        }
       }
     });
   });
@@ -37,14 +46,21 @@ document.addEventListener('DOMContentLoaded', function () {
     observer.observe(section);
   });
 
-  // Funcionalidad para contraer/expandir el índice en móviles
+  // Botón para togglear sidebar izquierdo
   const toggleBtn = document.getElementById('toggle-toc');
   toggleBtn.addEventListener('click', function () {
     const tocElement = document.querySelector('.toc');
     tocElement.classList.toggle('expanded');
   });
 
-  // Función que suma las alturas de los hijos visibles y asigna ese total como maxHeight
+  // Botón para togglear sidebar derecho
+  const toggleRightBtn = document.getElementById('toggle-right-sidebar');
+  toggleRightBtn.addEventListener('click', function () {
+    const rightSidebar = document.querySelector('.right-sidebar');
+    rightSidebar.classList.toggle('expanded');
+  });
+
+  // Función que recalcula la altura total de un contenedor sumando la altura de sus hijos
   function recalcContainerHeight(container) {
     let total = 0;
     Array.from(container.children).forEach(child => {
@@ -53,12 +69,9 @@ document.addEventListener('DOMContentLoaded', function () {
     container.style.maxHeight = total + 'px';
   }
 
-  // Actualiza la altura de los contenedores padres, 
-  // omitiendo el contenedor de la sección que se está toggling.
+  // Actualiza la altura de los contenedores padres sin afectar el contenedor de la sección toggleada
   function updateParentHeights(element) {
-    // Obtén el contenedor actual (la sección que se está expandiendo o colapsando)
     let currentCollapsible = element.closest('.collapsible');
-    // Ahora buscamos el contenedor padre de ese bloque (si existe)
     let parentCollapsible =
       currentCollapsible && currentCollapsible.parentElement
         ? currentCollapsible.parentElement.closest('.collapsible')
@@ -75,30 +88,26 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Funcionalidad para secciones colapsables (para secciones principales y subtemas)
+  // Togglear secciones internas al hacer clic en sus encabezados
   const collapsibleHeaders = document.querySelectorAll(
     '.collapsible h1, .collapsible h2, .collapsible h3, .collapsible h4'
   );
-
   collapsibleHeaders.forEach(header => {
     header.addEventListener('click', function (e) {
-      // Evita que el clic se propague al contenedor padre
       e.stopPropagation();
       const content = this.nextElementSibling;
-      // Si la sección está expandida, colapsarla
       if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+        // Colapsar
         content.style.maxHeight = '0px';
         content.style.paddingTop = '0';
         content.style.paddingBottom = '0';
       } else {
-        // Si está colapsada, expandirla
+        // Expandir
         content.style.maxHeight = content.scrollHeight + 'px';
         content.style.paddingTop = '20px';
         content.style.paddingBottom = '20px';
       }
-      // Actualiza las alturas de los contenedores padres (sin afectar el contenedor actual)
       updateParentHeights(content);
     });
   });
 });
-
